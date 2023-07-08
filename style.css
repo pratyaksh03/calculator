@@ -1,7 +1,7 @@
 .container{
     flex-direction: column;
     display: flex;
-    margin: 21vw;
+    margin: 20vw;
     width: 58vw;
     height: 99vw;
     justify-content: start;
