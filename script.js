@@ -2,10 +2,11 @@
 let v1 = "";
 let v2 = "";
 let op = "";
-let v3;
+let v3 = "";
 
 // Operate function defined
 const operate = function() {
+
   const history = document.querySelector(".history");
   const output = document.querySelector(".output");
 
@@ -23,7 +24,7 @@ const operate = function() {
     output.textContent = v3;
   }
 
-  history.textContent = `${v1} ${op} ${v2}`;
+  history.textContent = `${v1} ${op} ${v2} =`;
 };
 
 // Declaration of variables
@@ -32,18 +33,17 @@ const addToVar = function(event) {
   
   if (op === "") {
     v1 += number;
-  } else {
+  } else if(v3 === ""){
     v2 += number;
+  } else {
+    v1 = v3;
+    v2 = v4;
+    console.log(number);
   }
-
-  console.log(v1);
-  console.log(v2);
 };
 
 const addToOp = function(event) {
   op = event.target.innerText;
-
-  console.log(op);
 };
 
 // Adding functions to buttons
@@ -87,5 +87,3 @@ opr.addEventListener("click", operate);
 // Showing result in screen
 const history = document.querySelector(".history");
 const output = document.querySelector(".output");
-
-operate();
