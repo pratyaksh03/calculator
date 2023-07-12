@@ -6,15 +6,13 @@ let v3 = "";
 
 // Operate function defined
 const operate = function() {
-
-  const history = document.querySelector(".history");
-  const output = document.querySelector(".output");
+  history.textContent = `${v1} ${op} ${v2} =`;
 
   if (op === "*") {
     v3 = v1 * v2;
     output.textContent = v3;
   } else if (op === "+") {
-    v3 = v1 + v2;
+    v3 = parseInt(v1) + parseInt(v2);
     output.textContent = v3;
   } else if (op === "-") {
     v3 = v1 - v2;
@@ -24,7 +22,7 @@ const operate = function() {
     output.textContent = v3;
   }
 
-  history.textContent = `${v1} ${op} ${v2} =`;
+  v2 = ""; //resets value of v2 to null
 };
 
 // Declaration of variables
@@ -37,13 +35,38 @@ const addToVar = function(event) {
     v2 += number;
   } else {
     v1 = v3;
-    v2 = v4;
-    console.log(number);
+    v2 += number; 
   }
+
+  history.textContent = `${v1} ${op} ${v2}`;
 };
 
 const addToOp = function(event) {
   op = event.target.innerText;
+  history.textContent = `${v1} ${op} ${v2}`;
+};
+
+//Clear button
+const clrbtn = function(){
+  v1 = "";
+  v2 = "";
+  v3 = "";
+  op = "";
+  history.textContent = ``;
+  output.textContent = ``;
+}
+
+//Backspace button
+const back = function() {
+  if (v2 !== "") {
+    v2 = v2.slice(0, -1);
+  } else if (op !== "") {
+    op = "";
+  } else if (v1 !== "") {
+    v1 = v1.slice(0, -1);
+  }
+
+  history.textContent = `${v1} ${op} ${v2}`;
 };
 
 // Adding functions to buttons
@@ -84,6 +107,10 @@ sub.addEventListener("click", addToOp);
 
 opr.addEventListener("click", operate);
 
-// Showing result in screen
+clr.addEventListener('click', clrbtn);
+
+bs.addEventListener('click', back);
+
+// Showing result on screen
 const history = document.querySelector(".history");
 const output = document.querySelector(".output");
