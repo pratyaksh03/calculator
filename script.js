@@ -18,8 +18,13 @@ const operate = function() {
     v3 = v1 - v2;
     output.textContent = v3;
   } else if (op === "/") {
-    v3 = v1 / v2;
-    output.textContent = v3;
+    if(v2 === "0"){
+      output.textContent = "Yeah, I am not doing that..."
+    }
+    else{
+      v3 = v1 / v2;
+      output.textContent = v3;
+    }
   }
 
   v2 = ""; //resets value of v2 to null
@@ -43,7 +48,7 @@ const addToVar = function(event) {
 
 const addToOp = function(event) {
   op = event.target.innerText;
-  history.textContent = `${v1} ${op} ${v2}`;
+  history.textContent = `${v3} ${op} ${v2}`;
 };
 
 //Clear button
@@ -64,8 +69,9 @@ const back = function() {
     op = "";
   } else if (v1 !== "") {
     v1 = v1.slice(0, -1);
+  } else if (v3 !== "") {
+    v3 = v3.slice(0, -1);
   }
-
   history.textContent = `${v1} ${op} ${v2}`;
 };
 

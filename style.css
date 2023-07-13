@@ -27,12 +27,16 @@ body{
     border: 2px solid black;
     border-radius: max(3vw,30px);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 3vw;
+    font-size: 2vw;
     text-align: right;
 }
 
 .history, .output{
-    margin: 2vw;
+    margin: 1.5vw;
+}
+
+.history {
+    font-size: 3vw;
 }
 
 .buttons-grid{
