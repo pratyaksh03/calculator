@@ -7,8 +7,11 @@ let v3 = "";
 // Operate function defined
 const operate = function() {
   history.textContent = `${v1} ${op} ${v2} =`;
+  if(op === "" && v2 ===""){
+    output.textContent = v1;
+  }
 
-  if (op === "*") {
+  else if (op === "*") {
     v3 = v1 * v2;
     output.textContent = v3;
   } else if (op === "+") {
@@ -75,6 +78,25 @@ const back = function() {
   history.textContent = `${v1} ${op} ${v2}`;
 };
 
+//Decimal button
+const deci = function() {
+  decimal = dec.innerText;
+  
+  if (op === "") {
+    // Check if decimal point already exists in v1
+    if (!v1.includes(decimal)) {
+      v1 += decimal;
+    }
+  } else {
+    // Check if decimal point already exists in v2
+    if (!v2.includes(decimal)) {
+      v2 += decimal;
+    }
+  }
+
+  history.textContent = `${v1} ${op} ${v2}`;
+};
+
 // Adding functions to buttons
 const one = document.getElementById("a1");
 const two = document.getElementById("a2");
@@ -116,6 +138,8 @@ opr.addEventListener("click", operate);
 clr.addEventListener('click', clrbtn);
 
 bs.addEventListener('click', back);
+
+dec.addEventListener('click', deci);
 
 // Showing result on screen
 const history = document.querySelector(".history");
